@@ -8,7 +8,7 @@ date: "2023-09-20"
 library(moderndive)
 library(tidyverse)
 
-
+#Import date
 data("early_january_weather")
 early_january_weather
 
@@ -16,29 +16,38 @@ str(early_january_weather)
 nrow(early_january_weather)
 ncol(early_january_weather)
 mean(early_january_weather$temp)
+
+#Create a scatter plot for data
 ggplot(early_january_weather, aes(x = time_hour, y = temp, color = humid)) + geom_point()
 ggsave("scatter_plot.pdf", height = 4, width = 6)
 
-##The dataset consists of 358 observations spread across 15 columns, with an average temperature of 39.58 degree Farenheit. Among these 15 attributes, we have "temp" indicating the temperature in degrees Fahrenheit at the corresponding hour. "humid" provides the humidity level for that hour. "time_hour" denotes the exact hour of the observation, and "Wind_speed" specifies the wind speed at that particular hour.
 ```
+The dataset consists of 358 observations spread across 15 columns, with an average temperature of 39.58 degree Farenheit. Among these 15 attributes, we have "temp" indicating the temperature in degrees Fahrenheit at the corresponding hour. "humid" provides the humidity level for that hour. "time_hour" denotes the exact hour of the observation, and "Wind_speed" specifies the wind speed at that particular hour.
+
+
 ```{r}
+#Pick number randomly from the normal distribution
 numeric <- rnorm(10)
+
+#Create a data frame
 df <- data.frame(
   numeric,
   log_vector = numeric > 0,
   char_vector = c("a", "b", "c", "d", "e", "f", "g", "h", "i", "j"),
   fact_vector = factor(rep(1:3, length.out = 10))
 )
-
 print(df)
+
+#Calculate means with "pull" function
 mean_numeric <- mean(pull(df, numeric))
 mean_numeric
 mean_log <- mean(pull(df, log_vector))
 mean_log
 
+#Convert means to numeric values
 x = as.numeric(mean_numeric)
-y = as.numeric(mean_log)
 x
+y = as.numeric(mean_log)
 y
 ```
 
